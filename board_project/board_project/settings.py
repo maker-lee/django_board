@@ -31,12 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 장고 기본 서비스 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 아래는 개발자가 추가한 app 목록
+    'board_main',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# 기준이 되는 URL파일의 경로를 의미한다.
 ROOT_URLCONF = 'board_project.urls'
 
 TEMPLATES = [
@@ -73,6 +77,9 @@ WSGI_APPLICATION = 'board_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+
+# 전체 프로젝트의 database 정보를 아래에서 설정함 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -84,6 +91,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
+
+# 비밀번호의 복잡도
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -105,9 +114,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC' # 'UTC'는 한국시간의 -9시간인 그리니치 시간대
+# 그러나 사용자의 웹브라우저에 맞춰서 자동으로 시간을 바꿔주니까 서버에 들어가는 시간은 utc로 내비둬 
 
-USE_I18N = True
+USE_I18N = True #장고의 번역 시스템 활성화 여부를 설정
 
 USE_TZ = True
 

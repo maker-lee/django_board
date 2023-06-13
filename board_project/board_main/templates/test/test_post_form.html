@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="http://localhost:8000/test_post_handle" autocapitalize="on" method="POST">
+        {% csrf_token %}
+        <fieldset> 
+            <legend>회원가입(필수)</legend>
+            <ul>
+                이 름 : <input type="text" name="user_name" id="input_name"> <br>
+                이메일 : <input type="email" name="user_email" id="input_email"> <br>
+                패스워드 : <input type="password" name="user_password" maxlength="8" id=input_password><br>
+            </ul>
+        </fieldset>
+        <br>
+        <input type="submit" value="회원가입">
+        <input type="reset" value="취소">
+    </form>    
+</body>
+</html>

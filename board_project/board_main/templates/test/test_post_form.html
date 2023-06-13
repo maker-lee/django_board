@@ -23,3 +23,18 @@
     </form>    
 </body>
 </html>
+
+
+<!--
+    <보안>
+CSRF : Cross-Site Request Forgery
+사이트 간 요청 위조의 줄임말.
+웹 애플리케이션 취약점 중 하나로 사용자가 자신의 의지와 무관하게 공격자가 의도한 행동을 해서 특정 웹페이지를 보안에 취약하게 한다거나 수정, 삭제 등의 작업을 하게 만드는 공격 방법?
+
+POST요청의 경우에는 보안상 서버에 치명적인 영향을 끼칠수가 있다.
+CSRF토큰이라는것을 'Django'에서 사용함 
+form 내부에 {% csrf_token %} 를 입력하여 유저가 페이지를 get할때 key를 함께 준다. 
+* postman으로 post요청을 할 때는 csrf_token문제가 발생할 수 있다. 
+settings.py > MIDDLEWARE > 'django.middleware.csrf.CsrfViewMiddleware', 주석처리하면됨 (화면없이 등록테스트 하는 경우 postman을 사용하긴함)
+
+-->

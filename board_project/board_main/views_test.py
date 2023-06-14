@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
+from .models import Test
 
 
 # Create your views here.
@@ -54,7 +55,7 @@ def test_html_parameter_data(request) :
     email = request.GET.get('email')
     password = request.GET.get('password')
     data = {
-        'name':myname,
+        'name': myname,
         'email' : email,
         'password' : password
     }
@@ -82,15 +83,54 @@ def test_html_parameter_data2(request, my_id) :
 # POST방식
 def test_post_handle(request):
     if request.method == 'POST' :
-        name = request.POST['user_name']
-        email = request.POST['user_email']
-        password = request.POST['user_password']
-        print(name)
-        print(email)
-        print(password)
+        user_name = request.POST['user_name']
+        user_email = request.POST['user_email']
+        user_password = request.POST['user_password']
+        
+        # DB에 insert -> save 함수를 사용함 .
+        # DB에 테이블과 sync가 맞는 Test클래스에서 객체를 만들어서 save
+        t1 = Test() # class를 깡통으로 만들고
+        t1.name = user_name # 이렇게 집어넣는 스타일로 함 
+        t1.email = user_email
+        t1.password = user_password
+        t1.save()
+
         return redirect('/') # http://localhost:8000/ 으로 이동해라 
         #post 요청은 요청 후 적절한 상태코드를 줘야 한다.get처럼 html 화면 응답을 줄게 없으니 200 이런거. 
         # return HttpResponse('가입을 축하드립니다') 을 redirect로 변경함
     else : # GET방식
        return render(request, 'test/test_post_form.html')# 화면을 rendering(화면 리턴) 해주는 method 필요
  
+
+# DB에서 조회하기 
+def test_select_one(request,my_id) : # 하나만 조회하기, 단 건 조회는 get()함수
+    t1 = Test.objects.get(id=my_id)  
+    return render(request, 'test/test_select_one.html',{'data':t1})
+
+def test_select_all(request) : # 전체 조회하기, 모든 data조회는 post, select * from ..; all()함수를 사용한다. 파라미터 받을 필요 없음
+    tests = Test.objects.all() 
+    return render(request, 'test/test_select_all.html',{'datas':tests})
+
+# WHERE 조건으로 조회할 때는 filter() 함수를 사용한다. 
+def test_select_filter(request) :
+    my_name = request.GET.get('name')
+    tests = Test.objects.filter(name=my_name)
+    return render(request, 'test/test_select_filter.html',{'datas':tests})
+
+# UDATE 하기 
+def test_update(request):
+    if request.method == 'POST' : 
+        my_id = request.POST['my_id'] # my_id로 id가 작성한 '기존 객체' 조회
+        t1 = Test.objects.get(id=my_id) # db에서 객체를 조회해서 가져오기         
+        user_name = request.POST['user_name'] # 사용자가 입력한 값으로 업데이트
+        user_email = request.POST['user_email']
+        user_password = request.POST['user_password']
+
+        t1.name = user_name 
+        t1.email = user_email
+        t1.password = user_password
+        t1.save() # 기존 건이 있으면 update가 되고 없으면 insert가 된다. 
+        return redirect('/') 
+    else : 
+       return render(request, 'test/test_update.html')
+    

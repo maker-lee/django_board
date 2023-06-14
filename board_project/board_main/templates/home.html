@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>board</title>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/posts">게시판</a>
+        </li>
+        <li>
+            <a href="/authors">회원관리</a>
+        </li>
+    </ul>
+
+    {% block content %}
+    <!--상속 : 어느 게시판에 들어가도 home, 게시판, 회원관리가 보이도록 = 이 블록에 자식 화면이 나오게 왼다. -->
+
+    {% endblock %}
+    
+</body>
+</html>

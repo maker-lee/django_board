@@ -1,0 +1,26 @@
+{% extends 'home.html' %} <!--상속을 받는다.-->
+
+{% block content %}
+<h1>회원 목록</h1>
+<button><a href="/author/new" style="text-decoration:none">회원 가입</a></button>
+<table>
+    <thead>
+        <tr>
+            <th>이름</th>
+            <th>email</th>
+            <th>가입일</th>
+        </tr>
+    </thead>
+    <tbody> <!--이름을 클릭하면 회원목록에서 개별 상세페이지로 이동-->
+        {% for author in authors %}
+        <tr>
+            <td><a href="/author/{{author.id}}">{{author.name}}</a></td>
+            <!--{{author.id}}id로 받는 이유 : 이름은 중복이 생길 수 있어서, name을 클릭하면 id값으로 불러옴, author 안에는 객체로 다 가지고 있으니까-->
+            <td>{{author.email}}</td>
+            <td>{{author.created_at}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

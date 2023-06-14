@@ -1,0 +1,17 @@
+{% extends 'home.html' %} <!--상속을 받는다.-->
+
+{% block content %}
+<h1>회원 상세조회</h1>
+<fieldset>
+    <p>이름 : {{author.name}} </p>
+    <p>이메일 : {{author.email}}</p>
+    <p>비밀번호 : {{author.password}} </p>
+    <span>가입일 : {{author.created_at}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+    <span>회원정보수정일 : {{author.updated_at}} </span>
+    <br>
+    <br>
+</fieldset>
+<div>
+    <button><a href="/author/{{author.id}}/update" style="text-decoration:none"> 회원정보수정</a></button>
+</div>
+{% endblock %}

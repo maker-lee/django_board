@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 조회</title>
+</head>
+
+<body>
+    <legend>가입 회원 내역</legend>
+    <!--반복문을 사용하여 출력하기, 파이썬 템플릿엔진 문법-->
+    {% for data in datas %}
+    <fieldset>
+        <h1>닉네임 : {{data.name}} Welcome ! </h1>
+        <h1>메일 : {{data.email}} </h1>
+        <h1>비밀번호 : {{data.password}} </h1>
+        <br>
+    </fieldset>
+    {% endfor %} <!--for문 종료-->
+</body>
+
+</html>

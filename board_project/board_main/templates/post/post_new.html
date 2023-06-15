@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+{% block content %}
+<h1>게시글 작성</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>제목</label>
+        <input type="text" class="form-control" name="user_title">
+    </div>
+    <div class="form-group">
+        <label>내용</label>
+        <textarea name="user_contents" class="form-control"  rows="10"></textarea>
+    </div>
+    <div class="form-group">
+        <label>e-mail</label>
+        <input type="text" class="form-control" name="user_email">
+    </div>
+    <input type="submit" value="완료" style="text-decoration:none" class="btn btn-primary">
+    <input type="reset" value="취소" style="text-decoration:none" class="btn btn-secondary">
+    <a href="/posts" style="text-decoration:none" class="btn btn-secondary">목록</a>
+</form>   
+
+{% endblock %}

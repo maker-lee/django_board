@@ -1,9 +1,11 @@
 {% extends 'home.html' %} <!--상속을 받는다.-->
 
 {% block content %}
-<h1>회원 목록</h1>
-<button><a href="/author/new" style="text-decoration:none">회원 가입</a></button>
-<table>
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="page-title">회원 목록</h1>
+    <a href="/author/new" style="text-decoration:none" class="btn btn-primary">회원 가입</a></button>
+</div>
+<table class="table table-hover">
     <thead>
         <tr>
             <th>이름</th>

@@ -1,0 +1,21 @@
+{% extends 'home.html' %} 
+{% block content %}
+    <form autocapitalize="on" method="POST">
+        {% csrf_token %}
+        <div class="form-group"></div>
+            <h1>게시글 수정</h1>
+            <ul>
+                <div class="form-group">
+                <label>제목</label></div>                
+                <textarea name="user_title" rows="1" class="form-control"> {{post.title}} </textarea>
+                <div class="form-group">
+                <lable>내용</label><br>
+                <textarea name="user_contents" rows="10" class="form-control"> {{post.contents}} </textarea></div>
+            </ul>
+        <div>
+        <input type="submit" value="등록" style="text-decoration:none" class="btn btn-primary">
+        <input type="reset" value="취소" style="text-decoration:none" class="btn btn-secondary">
+        <a href="/post/{{post.id}}" style="text-decoration:none" class="btn btn-secondary">목록</a>
+    </div>
+    </form>    
+{% endblock %}

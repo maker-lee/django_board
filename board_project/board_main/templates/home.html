@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>board</title>
+    <!--실무에서는 다운로드 받아서 프로젝트에 저장하여 사용한다. static 폴더 등-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        h1 {
+            margin-top: 12;
+            margin-bottom: 10;
+            padding: 10px;
+            font-size: 36px;
+        }
+        footer {
+            background-color: #10151a;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* button {
+            color: white;
+            padding: 5px;
+            float: right;
+        } */
+    </style>
 </head>
+
 <body>
-    <ul>
-        <li>
-            <a href="/">Home</a>
-        </li>
-        <li>
-            <a href="/posts">게시판</a>
-        </li>
-        <li>
-            <a href="/authors">회원관리</a>
-        </li>
-    </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div>
+                <ul class="navbar-nav">
+                    <li>
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/posts">게시판</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/authors">회원관리</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--css명에 이름 2개를 쓰면 2개의 class 적용-->
+    <main class="container mt-4">
+        {% block content %}
+        <!--상속 : 어느 게시판에 들어가도 home, 게시판, 회원관리가 보이도록 = 이 블록에 자식 화면이 나오게 왼다. -->
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="container">
+            <p class="text-center mb-0">made by lee</p>
+        </div>
+    </footer>
 
-    {% block content %}
-    <!--상속 : 어느 게시판에 들어가도 home, 게시판, 회원관리가 보이도록 = 이 블록에 자식 화면이 나오게 왼다. -->
-
-    {% endblock %}
-    
 </body>
+
 </html>

@@ -1,6 +1,29 @@
 {% extends 'home.html' %} <!--상속을 받는다.-->
 
 {% block content %}
-<p> post 자식 화면 입니다?</p>
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="page-title">게시글 목록</h1>
+    <a href="/post/new" style="text-decoration:none" class="btn btn-primary">새 글 등록</a></button>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성일</th>
+            <th>작성자</th>
+        </tr>
+    </thead>
+    <tbody> <!--이름을 클릭하면 회원목록에서 개별 상세페이지로 이동-->
+        {% for post in posts %}
+        <tr>
+            <td><a href="/post/{{post.id}}">{{post.title}}</a></td>
+            <td>{{post.contents}}</td>
+            <td>{{post.created_at}}</td>
+            <td>{{post.author.name}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}

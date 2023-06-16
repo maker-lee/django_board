@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect 
 from .models import Author, Post
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseNotFound
 
 # Create your views here.
 
@@ -11,12 +11,10 @@ def author_list(request) : # 회원 가입한 사람들 전체 조회
     authors = Author.objects.all() 
     return render(request,'author/author_list.html',{'authors':authors})
 
-
 def author_detail(request,my_id) : # 상세조회 페이지로 이동한다. 
     author = Author.objects.get(id=my_id) 
     #print(author.posts.count()) # 몇개의 글을 썼는지 카운트 
     return render(request,'author/author_detail.html',{'author':author})
-
 
 def author_update(request,my_id) : #회원정보수정 페이지에서 동작 
     author = Author.objects.get(id=my_id) # 웹을 뿌려주기 전에 조회
@@ -31,7 +29,6 @@ def author_update(request,my_id) : #회원정보수정 페이지에서 동작
         return redirect('/') 
     else : 
         return render(request, 'author/author_update.html',{'author':author})#
-
 
 def author_new(request) : # 회원 가입 페이지에서 동작
     if request.method == 'POST' :
